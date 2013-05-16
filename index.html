@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>EPFL/UNIL Campus Bikes</title>
+
+  
+  <link rel="stylesheet" href="css/foundation.min.css" />
+  <script src="js/vendor/custom.modernizr.js"></script>
+
+</head>
+<body>
+  	<script type="text/x-handlebars">
+	  	<div class="row">
+			<div class="large-12 columns">
+				<h2>EPFL/UNIL vélos campus</h2>
+			</div>
+		</div>
+
+  		<div class="row">
+  			<div class="small-12 columns">
+  				{{#if App.StationsController.isSearching}}
+				    <div class="row">
+					  <div class="large-12 columns">
+					  	<div class="panel">
+					  		Chargement des données ...
+					  	</div>
+					  </div>
+					</div>
+				{{/if}}
+  			</div>
+  		</div>
+
+
+
+	  	{{#unless App.StationsController.isSearching}}
+		<div class="row">
+		  <div class="large-12 columns">
+		  	<table>
+			  <thead>
+			    <tr>
+			      <th width="600">Station</th>
+			      <th>Vélos</th>
+			      <th>Emplacements</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+
+
+
+		  		{{#each App.StationsController}}
+		  			<tr>
+
+		  			<td><a target="_blank" {{bindAttr href="maps"}}>{{name}}</a></td>
+		  		
+				      <td>
+				      {{normalbikes}}
+		  				
+		  			  </td>
+				   
+				      <td>
+						{{#each bikeholders}}
+			  				{{holdersfree}} des {{holders}}
+			  			{{/each}}
+				      </td>
+				    </tr>
+		  		{{/each}}
+			    
+			  </tbody>
+			</table>
+		  </div>
+		</div>
+		{{/unless}}
+
+
+		<div class="row">
+			<div class="large-12 columns">
+				<hr />
+				<span style="font-size:10pt">data copyright by publibike • application by <a href="http://github.com/bitmorse/epflunilcampusbikes" target="_blank">bitmorse</a>  •  GPLv2  •  version 1</span>
+				<br />
+				<br />
+			</div>
+		</div>
+
+	</script>
+
+
+	<script type="text/javascript" src="/min/b=js&amp;f=vendor/jquery.js,vendor/handlebars-1.0.0-rc.3.js,vendor/ember-1.0.0-rc.3.js,app.js"></script>
+	<script>
+	  $(document).foundation();
+
+	  var _paq = _paq || [];
+	  _paq.push(["trackPageView"]);
+	  _paq.push(["enableLinkTracking"]);
+
+	  (function() {
+	    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://trck.bitmorse.com/";
+	    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+	    _paq.push(["setSiteId", "6"]);
+	    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+	    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+	  })();
+	</script>
+</body>
+</html>
